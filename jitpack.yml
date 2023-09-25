@@ -1,0 +1,14 @@
+jdk:
+  - openjdk9
+before_install:
+  - ./scripts/prepareJitpackEnvironment.sh
+install:
+  - echo "Running a custom install command"
+  - chmod +x ./gradlew
+  - ./gradlew clean install
+  - ./gradlew build publishToMavenLocal
+  - ./mvnw install -DskipTests
+env:
+  GROUP: "io.github.sdailover"
+  ARTIFACT: "hekstaroid"
+  VERSION: "snapshot"
