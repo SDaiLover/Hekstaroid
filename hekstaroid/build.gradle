@@ -1,0 +1,173 @@
+/*
+ * Hekstaroid Android Libraries by StephanusDai Developer
+ * @link http://sdailover.github.io/
+ * @mail team@sdailover.web.id
+ * @copyright Copyright (c) 2023 StephanusDai Developer
+ * @license http://sdailover.github.io/license.html
+ */
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'maven-publish'
+    id 'signing'
+}
+
+apply from: 'config.gradle'
+group publishedGroupId
+version libraryVersion
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = publishedGroupId
+                artifactId = artifact
+                version = libraryVersion
+            }
+            maven(MavenPublication) {
+                from components.release
+
+                groupId = publishedGroupId
+                artifactId = artifact
+                version = libraryVersion
+
+                //def mavenRepoUrl = "${System.env.HOME}/.m2/repository";
+                //buildDir = System.getenv("HOME") == null ? project.buildDir : mavenRepoUrl;
+
+                pom {
+                    name = libraryName
+                    description = libraryDescription
+                    url = "https://${siteUrl}"
+                    licenses {
+                        license {
+                            name = licenseName
+                            url =  licenseUrl
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = developerId
+                            name = developerName
+                            email = developerEmail
+                        }
+                    }
+                    scm {
+                        connection = "scm:git:git://${gitUrl}"
+                        developerConnection = "scm:git:ssh://${gitUrl}"
+                        url = "https://${siteUrl}"
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                def releasesRepoUrl = layout.buildDirectory.dir('repos/releases')
+                def snapshotsRepoUrl = layout.buildDirectory.dir('repos/snapshots')
+                def defaultRepoUrl = project.hasProperty('release') ? releasesRepoUrl : snapshotsRepoUrl
+                def mavenRepoUrl = "${System.env.HOME}/.m2/repository";
+                url = System.getenv("HOME") == null ? defaultRepoUrl : mavenRepoUrl;
+            }
+        }
+    }
+}
+
+android {
+    resourcePrefix resourceName
+    namespace namespaceGroupId
+    compileSdk compile_sdk_version
+
+    signingConfigs {
+        release {
+            storeFile file("${project.rootDir}/gnupg/secring.gpg")
+            storePassword "TEAMWORK"
+            keyAlias "05C50F00"
+            keyPassword "TEAMWORK"
+        }
+    }
+    defaultConfig {
+        minSdkVersion min_sdk_version
+        versionCode 1
+        versionName libraryVersion
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion target_sdk_version
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        aarMetadata {
+            minSdkVersion min_sdk_version
+        }
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            getIsDefault().set(true)
+        }
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets {
+        main {
+            kotlin.srcDirs = ['src/main/kotlin', 'test/main/kotlin', 'androidTest/main/kotlin']
+            java.srcDirs = ['src/main/java', 'test/main/java', 'androidTest/main/java']
+            res.srcDirs = ['src/main/res', 'test/main/res', 'androidTest/main/res']
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+        }
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{BSD3.0,CC4.0}'
+        }
+    }
+    publishing {
+        singleVariant('release') {
+            withJavadocJar()
+            withSourcesJar()
+        }
+    }
+    //noinspection GrDeprecatedAPIUsage
+    buildToolsVersion build_tool_version
+}
+
+/*
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.2.1'
+}
+ */
+
+dependencies {
+    //noinspection GradleDependency
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //noinspection GradleDependency
+    implementation 'androidx.core:core:1.5.0'
+    //noinspection GradleDependency
+    implementation 'androidx.core:core-ktx:1.5.0'
+    //noinspection GradleDependency
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    //noinspection GradleDependency
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
