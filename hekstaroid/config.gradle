@@ -1,0 +1,42 @@
+/*
+ * Hekstaroid Android Libraries by StephanusDai Developer
+ * @link http://sdailover.github.io/
+ * @mail team@sdailover.web.id
+ * @copyright Copyright (c) 2023 StephanusDai Developer
+ * @license http://sdailover.github.io/license.html
+ */
+
+ext {
+    kotlin_version = '1.6.21'
+    compose_version = '1.4.0'
+    build_tool_version = '30.0.3'
+    min_sdk_version = 27
+    compile_sdk_version = 29
+    target_sdk_version = compile_sdk_version
+    dir_source_kotlin = 'src/main/kotlin'
+    dir_source_java = 'src/main/java'
+
+
+    bintrayRepo = 'maven'
+    bintrayName = 'hekstaroid'
+
+    namespaceGroupId = 'io.github.sdailover.hekstaroid'
+    publishedGroupId = 'io.github.sdailover'
+    artifact = 'hekstaroid'
+    resourceName = 'hekstaroid_'
+
+    libraryName = 'Hekstaroid Libraries'
+    libraryDescription = 'Android Component Libraries by SDaiLover Teams.'
+    libraryVersion = 'snapshot'
+
+    siteUrl = 'github.com/SDaiLover/Hekstaroid/'
+    gitUrl = 'github.com/SDaiLover/Hekstaroid.git'
+
+    developerId = 'sdailover'
+    developerName = 'StephanusDai Developer'
+    developerEmail = 'sdailover@stephanusdai.web.id'
+
+    licenseName = 'The Clause BSD License, Version 3.0'
+    licenseUrl = 'http://sdailover.github.com/license.html'
+    allLicenses = ["BSD-3.0", "CC-4.0"]
+}

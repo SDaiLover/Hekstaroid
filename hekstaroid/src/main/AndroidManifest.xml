@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Hekstaroid Android Libraries by StephanusDai Developer
+  ~ @link http://sdailover.github.io/
+  ~ @mail team@sdailover.web.id
+  ~ @copyright Copyright (c) 2023 StephanusDai Developer
+  ~ @license http://sdailover.github.io/license.html
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="io.github.sdailover.hekstaroid" android:versionName="1.0.1">
+
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+        tools:ignore="ProtectedPermissions" />
+</manifest>
