@@ -27,7 +27,7 @@ ext {
 
     libraryName = 'Hekstaroid Libraries'
     libraryDescription = 'Android Component Libraries by SDaiLover Teams.'
-    libraryVersion = 'snapshot'
+    libraryVersion = '1.0.1'
 
     siteUrl = 'github.com/SDaiLover/Hekstaroid/'
     gitUrl = 'github.com/SDaiLover/Hekstaroid.git'
