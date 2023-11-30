@@ -1,0 +1,11 @@
+<!--
+  ~ AndroidBottomSheetDialog by Stephanus Dai (戴偉峯)
+  ~ @link http://www.stephanusdai.web.id/
+  ~ @mail wiefunk@stephanusdai.web.id
+  ~ @copyright Copyright (c) 2023 Stephanus Bagus Saputra
+  ~ @license http://stephanusdai.web.id/license.html
+  -->
+
+<resources>
+    <string name="app_name">Hekstaroid Demo</string>
+</resources>

@@ -49,7 +49,7 @@ public final class SDUnitConverter {
      * @param context Context to get resources and device specific display metrics
      * @return A float value to represent px equivalent to dp depending on device density
      */
-    public static float dpToPixel(float dp, Context context){
+    public static float dpToPixel(Context context, float dp){
         float calculate = 0;
         if (context.getResources() != null) {
             if (context.getResources().getDisplayMetrics() != null) {
@@ -67,7 +67,7 @@ public final class SDUnitConverter {
      * @param context Context to get resources and device specific display metrics
      * @return A float value to represent dp equivalent to px value
      */
-    public static float pixelsToDp(float px, Context context){
+    public static float pixelsToDp(Context context, float px){
         float calculate = 0;
         if (context.getResources() != null) {
             if (context.getResources().getDisplayMetrics() != null) {

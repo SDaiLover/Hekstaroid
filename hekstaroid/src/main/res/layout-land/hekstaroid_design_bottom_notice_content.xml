@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Hekstaroid Android Libraries by StephanusDai Developer
+  ~ @link http://sdailover.github.io/
+  ~ @mail team@sdailover.web.id
+  ~ @copyright Copyright (c) 2023 StephanusDai Developer
+  ~ @license http://sdailover.github.io/license.html
+  -->
+
+<!--
+  ~ Hekstaroid Library Packages for Android by StephanusDai Developer
+  ~ Email   : team@sdailover.web.id
+  ~ Website : http://www.sdailover.web.id
+  ~ (C) ID 2023 Stephanus Dai Developer (sdailover.github.io)
+  ~ All rights reserved.
+  ~
+  ~ Licensed under the Clause BSD License, Version 3.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://sdailover.github.io/license.html
+  ~
+  ~ This software is provided by the STEPHANUS DAI DEVELOPER and
+  ~ CONTRIBUTORS "AS IS" and Any Express or IMPLIED WARRANTIES, INCLUDING,
+  ~ BUT NOT LIMITED TO, the implied warranties of merchantability and
+  ~ fitness for a particular purpose are disclaimed in no event shall the
+  ~ Stephanus Dai Developer or Contributors be liable for any direct,
+  ~ indirect, incidental, special, exemplary, or consequential damages
+  ~ arising in anyway out of the use of this software, even if advised
+  ~ of the possibility of such damage.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="24dp"
+        tools:ignore="RedundantNamespace,UselessLeaf,UselessParent">
+
+        <LinearLayout
+            android:id="@+id/hekstaroid_notice_group"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/hekstaroid_notice_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:scaleType="fitXY"
+                android:src="@android:drawable/ic_dialog_alert"
+                tools:ignore="ContentDescription,ImageContrastCheck" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="16dp">
+
+                <TextView
+                    android:id="@+id/hekstaroid_notice_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:letterSpacing="0.15"
+                    android:text="@string/hekstaroid_bottom_notice_title"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="#A51212"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/hekstaroid_notice_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="fill_horizontal"
+                    android:justificationMode="inter_word"
+                    android:text="@string/hekstaroid_bottom_notice_message"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hekstaroid_notice_copyright"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hekstaroid_notice_group"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="@string/hekstaroid_copyright"
+            android:textAlignment="center"
+            tools:ignore="HardcodedText" />
+
+    </RelativeLayout>
+</FrameLayout>

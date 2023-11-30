@@ -32,13 +32,20 @@ package io.github.sdailover.hekstaroid.app;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import android.Manifest;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
+
+import io.github.sdailover.hekstaroid.maps.SDNetworkInterface;
 import io.github.sdailover.hekstaroid.maps.SDScreenChangeListener;
+import io.github.sdailover.hekstaroid.services.SDNetworkEventListener;
 import io.github.sdailover.hekstaroid.services.SDScreenEventListener;
 import io.github.sdailover.hekstaroid.utils.SDDisplayMetrics;
+import io.github.sdailover.hekstaroid.utils.SDNetworkType;
 import io.github.sdailover.hekstaroid.utils.SDScreenMode;
 
 /**
@@ -56,12 +63,20 @@ import io.github.sdailover.hekstaroid.utils.SDScreenMode;
  * @author Stephanus Bagus Saputra (wiefunk@stephanusdai.web.id)
  *       and other contributors. See credits file.
  */
-public class SDActivity extends Activity implements SDScreenChangeListener {
+public class SDActivity extends Activity
+        implements SDScreenChangeListener, SDNetworkInterface.SDNetworkChangeListener {
     SDScreenEventListener screenEventListener;
+    SDNetworkEventListener networkEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        networkEventListener = new SDNetworkEventListener(this) {
+            @Override
+            public void onNetworkChanged(boolean isAvailable, @NonNull SDNetworkType connectionType) {
+                SDActivity.this.onNetworkChanged(isAvailable, connectionType);
+            }
+        };
         screenEventListener = new SDScreenEventListener(this) {
             @Override
             public void onScreenChanged(int rotation, SDScreenMode orientation, SDDisplayMetrics displayMetrics) {
@@ -74,8 +89,17 @@ public class SDActivity extends Activity implements SDScreenChangeListener {
     public void onScreenChanged(int rotation, SDScreenMode orientation, SDDisplayMetrics displayMetrics) { }
 
     @Override
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
+    public void onNetworkChanged(boolean isAvailable, SDNetworkType connectionType) { }
+
+    @Override
     protected void onStart() {
         super.onStart();
+        if (networkEventListener != null) {
+            if (networkEventListener.canDetectConnection()) {
+                networkEventListener.enable();
+            }
+        }
         if (screenEventListener != null) {
             if (screenEventListener.canDetectScreen()) {
                 screenEventListener.enable();
@@ -86,6 +110,11 @@ public class SDActivity extends Activity implements SDScreenChangeListener {
     @Override
     protected void onStop() {
         super.onStop();
+        if (networkEventListener != null) {
+            if (networkEventListener.canDetectConnection()) {
+                networkEventListener.disable();
+            }
+        }
         if (screenEventListener != null) {
             if (screenEventListener.canDetectScreen()) {
                 screenEventListener.disable();

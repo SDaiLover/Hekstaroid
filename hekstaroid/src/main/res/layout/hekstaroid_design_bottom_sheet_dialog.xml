@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Hekstaroid Android Libraries by StephanusDai Developer
+  ~ @link http://sdailover.github.io/
+  ~ @mail team@sdailover.web.id
+  ~ @copyright Copyright (c) 2023 StephanusDai Developer
+  ~ @license http://sdailover.github.io/license.html
+  -->
+
+<!--
+  ~ Hekstaroid Library Packages for Android by StephanusDai Developer
+  ~ Email   : team@sdailover.web.id
+  ~ Website : http://www.sdailover.web.id
+  ~ (C) ID 2023 Stephanus Dai Developer (sdailover.github.io)
+  ~ All rights reserved.
+  ~
+  ~ Licensed under the Clause BSD License, Version 3.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://sdailover.github.io/license.html
+  ~
+  ~ This software is provided by the STEPHANUS DAI DEVELOPER and
+  ~ CONTRIBUTORS "AS IS" and Any Express or IMPLIED WARRANTIES, INCLUDING,
+  ~ BUT NOT LIMITED TO, the implied warranties of merchantability and
+  ~ fitness for a particular purpose are disclaimed in no event shall the
+  ~ Stephanus Dai Developer or Contributors be liable for any direct,
+  ~ indirect, incidental, special, exemplary, or consequential damages
+  ~ arising in anyway out of the use of this software, even if advised
+  ~ of the possibility of such damage.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hekstaroid_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/hekstaroid_coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <View
+            android:id="@+id/hekstaroid_touch_outside"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:importantForAccessibility="no"
+            android:soundEffectsEnabled="false"
+            tools:ignore="UnusedAttribute"/>
+
+        <FrameLayout
+            android:id="@+id/hekstaroid_design_bottom_sheet"
+            style="?attr/bottomSheetStyle"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+            <RelativeLayout
+                android:id="@+id/hekstaroid_post_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="12dp"
+                android:layout_gravity="center_horizontal|top"
+                tools:ignore="UselessLeaf,UselessParent">
+
+                <ImageButton
+                    android:id="@+id/hekstaroid_close_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:backgroundTint="@android:color/transparent"
+                    android:clickable="true"
+                    android:contentDescription="Close Window"
+                    android:scaleType="fitCenter"
+                    android:src="@android:drawable/ic_delete"
+                    android:tooltipText="Close Window"
+                    tools:ignore="ContentDescription,HardcodedText" />
+
+                <FrameLayout
+                    android:id="@+id/hekstaroid_content_wrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxWidth="1200dp"
+                    android:layout_below="@id/hekstaroid_close_button"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal|top"
+                    android:clickable="true" />
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

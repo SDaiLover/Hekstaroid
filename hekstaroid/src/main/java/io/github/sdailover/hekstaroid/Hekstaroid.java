@@ -44,6 +44,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 import io.github.sdailover.hekstaroid.annotation.RemotableViewMethod;
+import io.github.sdailover.hekstaroid.components.SDBottomNoticeComponent;
 import io.github.sdailover.hekstaroid.components.SDDisplayManagerComponent;
 
 /**
@@ -82,6 +83,14 @@ public final class Hekstaroid {
             displayManager = new SDDisplayManagerComponent(app);
         }
         return displayManager;
+    }
+
+    private SDBottomNoticeComponent bottomNotice = null;
+    public SDBottomNoticeComponent getBottomNotice() {
+        if (bottomNotice == null) {
+            bottomNotice = new SDBottomNoticeComponent(app);
+        }
+        return bottomNotice;
     }
 
     protected @Nullable Object getComponents(@NonNull String className) {

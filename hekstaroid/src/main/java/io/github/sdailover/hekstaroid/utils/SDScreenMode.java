@@ -36,6 +36,7 @@ package io.github.sdailover.hekstaroid.utils;
 
 /**
  * Type of device screen mode.
+ *
  * @author Stephanus Bagus Saputra (wiefunk@stephanusdai.web.id)
  *       and other contributors. See credits file.
  */

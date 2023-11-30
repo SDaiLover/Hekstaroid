@@ -32,15 +32,21 @@ package io.github.sdailover.hekstaroid.app;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import android.Manifest;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 
+import io.github.sdailover.hekstaroid.maps.SDNetworkInterface;
 import io.github.sdailover.hekstaroid.maps.SDScreenChangeListener;
+import io.github.sdailover.hekstaroid.services.SDNetworkEventListener;
 import io.github.sdailover.hekstaroid.services.SDScreenEventListener;
 import io.github.sdailover.hekstaroid.utils.SDDisplayMetrics;
+import io.github.sdailover.hekstaroid.utils.SDNetworkType;
 import io.github.sdailover.hekstaroid.utils.SDScreenMode;
 
 /**
@@ -56,8 +62,10 @@ import io.github.sdailover.hekstaroid.utils.SDScreenMode;
  * @author Stephanus Bagus Saputra (wiefunk@stephanusdai.web.id)
  *       and other contributors. See credits file.
  */
-public class SDAppCompatActivity extends AppCompatActivity implements SDScreenChangeListener {
+public class SDAppCompatActivity extends AppCompatActivity
+        implements SDScreenChangeListener, SDNetworkInterface.SDNetworkChangeListener {
     SDScreenEventListener screenEventListener;
+    SDNetworkEventListener networkEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +76,20 @@ public class SDAppCompatActivity extends AppCompatActivity implements SDScreenCh
                 SDAppCompatActivity.this.onScreenChanged(rotation, orientation, displayMetrics);
             }
         };
+        networkEventListener = new SDNetworkEventListener(this) {
+            @Override
+            public void onNetworkChanged(boolean isAvailable, @NonNull SDNetworkType connectionType) {
+                SDAppCompatActivity.this.onNetworkChanged(isAvailable, connectionType);
+            }
+        };
     }
 
     @Override
     public void onScreenChanged(int rotation, SDScreenMode orientation, SDDisplayMetrics displayMetrics) { }
+
+    @Override
+    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
+    public void onNetworkChanged(boolean isAvailable, SDNetworkType connectionType) { }
 
     @Override
     protected void onStart() {
@@ -79,6 +97,11 @@ public class SDAppCompatActivity extends AppCompatActivity implements SDScreenCh
         if (screenEventListener != null) {
             if (screenEventListener.canDetectScreen()) {
                 screenEventListener.enable();
+            }
+        }
+        if (networkEventListener != null) {
+            if (networkEventListener.canDetectConnection()) {
+                networkEventListener.enable();
             }
         }
     }
@@ -91,6 +114,10 @@ public class SDAppCompatActivity extends AppCompatActivity implements SDScreenCh
                 screenEventListener.disable();
             }
         }
+        if (networkEventListener != null) {
+            if (networkEventListener.canDetectConnection()) {
+                networkEventListener.disable();
+            }
+        }
     }
-
 }

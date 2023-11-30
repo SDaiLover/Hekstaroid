@@ -78,19 +78,19 @@ public abstract class SDScreenEventListener implements SDScreenChangeListener {
     public static final SDDisplayMetrics SCREEN_UNKNOWN = new SDDisplayMetrics();
 
     /**
-     * Creates a new SDScreenEventListene.
+     * Creates a new SDScreenEventListener.
      * Reference see {@link OrientationEventListener}
-     * @param context for the SDScreenEventListene.
+     * @param context for the SDScreenEventListener.
      */
     public SDScreenEventListener(Context context) {
         this(context, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     /**
-     * Creates a new SDScreenEventListene.
+     * Creates a new SDScreenEventListener.
      * Reference see {@link OrientationEventListener}
      *
-     * @param context for the OrientationEventListener.
+     * @param context for the SDScreenEventListener.
      * @param rate at which sensor events are processed (see also
      * {@link android.hardware.SensorManager SensorManager}). Use the default
      * value of {@link android.hardware.SensorManager#SENSOR_DELAY_NORMAL
@@ -138,7 +138,7 @@ public abstract class SDScreenEventListener implements SDScreenChangeListener {
     }
 
     /**
-     * Enables the OrientationEventListener so it will monitor the sensor and call
+     * Enables the SDScreenEventListener so it will monitor the sensor and call
      * {@link #onScreenChanged} when the device orientation or rotation changes.
      *
      * Reference see {@link OrientationEventListener#enable()}
@@ -149,7 +149,7 @@ public abstract class SDScreenEventListener implements SDScreenChangeListener {
             return;
         }
         if (enabled == false) {
-            if (localLOGV) Log.d(TAG, "OrientationEventListener enabled");
+            if (localLOGV) Log.d(TAG, "SDScreenEventListener enabled");
             sensorManager.registerListener(sensorEventListener, sensor, rate);
             enabled = true;
         }
@@ -166,7 +166,7 @@ public abstract class SDScreenEventListener implements SDScreenChangeListener {
             return;
         }
         if (enabled == true) {
-            if (localLOGV) Log.d(TAG, "OrientationEventListener disabled");
+            if (localLOGV) Log.d(TAG, "SDScreenEventListener disabled");
             sensorManager.unregisterListener(sensorEventListener);
             enabled = false;
         }

@@ -1,9 +1,10 @@
 /*
- * Hekstaroid Android Libraries by StephanusDai Developer
- * @link http://sdailover.github.io/
- * @mail team@sdailover.web.id
- * @copyright Copyright (c) 2023 StephanusDai Developer
- * @license http://sdailover.github.io/license.html
+ * AndroidBottomSheetDialog by Stephanus Dai (戴偉峯)
+ * @link http://www.stephanusdai.web.id/
+ * @mail sdailover@stephanusdai.web.id
+ * @copyright Copyright (c) 2023 Stephanus Bagus Saputra
+ * @license http://stephanusdai.web.id/license.html
  */
-rootProject.name = "Hekstaroid"
+rootProject.name = "AppDemo"
+include ':appdemo'
 include ':hekstaroid'

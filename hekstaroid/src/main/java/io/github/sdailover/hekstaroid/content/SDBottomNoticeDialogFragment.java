@@ -43,7 +43,6 @@ import androidx.fragment.app.DialogFragment;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 /**
  * Modal bottom sheet. This is a version of {@link DialogFragment} that shows a bottom sheet using
@@ -52,7 +51,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
  * @author Stephanus Bagus Saputra (wiefunk@stephanusdai.web.id)
  *       and other contributors. See credits file.
  */
-public class SDBottomNoticeDialogFragment extends AppCompatDialogFragment {
+public class SDBottomNoticeDialogFragment extends SDBottomSheetDialogFragment {
     /**
      * Tracks if we are waiting for a dismissAllowingStateLoss or a regular dismiss once the
      * BottomSheet is hidden and onStateChanged() is called.
@@ -85,8 +84,8 @@ public class SDBottomNoticeDialogFragment extends AppCompatDialogFragment {
      */
     private boolean tryDismissWithAnimation(boolean allowingStateLoss) {
         Dialog baseDialog = getDialog();
-        if (baseDialog instanceof BottomSheetDialog) {
-            BottomSheetDialog dialog = (BottomSheetDialog) baseDialog;
+        if (baseDialog instanceof SDBottomNoticeDialog) {
+            SDBottomNoticeDialog dialog = (SDBottomNoticeDialog) baseDialog;
             BottomSheetBehavior<?> behavior = dialog.getBehavior();
             if (behavior.isHideable() && dialog.getDismissWithAnimation()) {
                 dismissWithAnimation(behavior, allowingStateLoss);

@@ -34,7 +34,10 @@ package io.github.sdailover.hekstaroid.maps;
  */
 import android.content.DialogInterface;
 
+import androidx.annotation.InspectableProperty;
 import androidx.annotation.Nullable;
+
+import io.github.sdailover.hekstaroid.annotation.RemotableViewMethod;
 
 /**
  * Interface that defines a dialog-type class that can be shown, dismissed, or
@@ -53,7 +56,6 @@ import androidx.annotation.Nullable;
  *       and other contributors. See credits file.
  */
 public interface SDDialogInterface extends DialogInterface {
-
     /**
      * Get result from event {@link OnBeforeDismissListener} which will prevent
      * the dismissal process so that it can handle other code processes and
@@ -85,7 +87,8 @@ public interface SDDialogInterface extends DialogInterface {
     void setCancelDismiss(boolean canceled);
 
     /**
-     * This method will be called when the screen device has been changed.
+     * Set {@link OnBeforeDismissListener} to process run some code when the
+     * dialog is dismissed.
      *
      * @param listener The {@link OnBeforeDismissListener} instance.
      * @author Stephanus Bagus Saputra (wiefunk@stephanusdai.web.id)
